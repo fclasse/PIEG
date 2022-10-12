@@ -1,0 +1,143 @@
+TITLE:      Erzeugte Daten PGEV Model 3;
+
+DATA:       FILE IS ges7_MSMT.txt;
+            TYPE IS INDIVIDUAL;
+            
+
+VARIABLE:	NAMES ARE y1-y12 ;
+
+
+            USEVARIABLES ARE  y1-y12 ;
+
+            CATEGORICAL ARE  y1-y12 ;
+     
+            
+
+            
+ANALYSIS:   Estimator=WLSMV; !MLR
+            PARAMETERIZATION=THETA;
+            DIFFTEST IS PIEG_m1_diff.dat;
+MODEL:
+
+            ETA1 BY y1@1;! (alpha02);          
+            ETA1 BY y2@1; !(alpha14); 
+            ETA1 BY y3@1; !(alpha47);
+            ETA1 BY y4@1; !(alpha56);
+
+            ETA2 BY y5@1;          
+            ETA2 BY y6@1; !(alpha14); 
+            ETA2 BY y7@1; !(alpha47);
+            ETA2 BY y8@1; !(alpha56);
+
+            ETA3 BY y9@1;          
+            ETA3 BY y10@1; !(alpha14); 
+            ETA3 BY y11@1; !(alpha47);
+            ETA3 BY y12@1; !(alpha56);
+
+
+            BETA2  BY y2@1; 
+            BETA2  BY y6@1;  
+            BETA2  BY y10@1; 
+             
+            BETA3  BY y3@1;
+            BETA3  BY y7@1;
+            BETA3  BY y11@1;
+
+            BETA4  BY y4@1;
+            BETA4  BY y8@1;
+            BETA4  BY y12@1;
+
+           ! ETA1@1;
+            [ETA1*];
+           ! ETA2@1;
+            [ETA2*];
+           ! ETA3@1;
+            [ETA3*];
+
+            [BETA2*];
+            [BETA3*];
+            [BETA4*];
+
+              [y1$1@0]; 
+              [y1$2*] (t1i1k2);
+              [y1$3*] (t1i1k3);
+              [y1$4*] (t1i1k4);
+
+              [y5$1@0]; 
+              [y5$2*] (t2i1k2);
+              [y5$3*] (t2i1k3);
+              [y5$4*] (t2i1k4);
+
+              [y9$1@0]; 
+              [y9$2*] (t3i1k2);
+              [y9$3*] (t3i1k3);
+              [y9$4*] (t3i1k4);
+
+
+              [y2$1@0];
+              [y2$2*] (t1i1k2);
+              [y2$3*] (t1i1k3);
+              [y2$4*] (t1i1k4);
+
+              [y6$1@0];
+              [y6$2*] (t2i1k2);
+              [y6$3*] (t2i1k3);
+              [y6$4*] (t2i1k4);
+
+              [y10$1@0];
+              [y10$2*] (t3i1k2);
+              [y10$3*] (t3i1k3);
+              [y10$4*] (t3i1k4);
+
+
+              [y3$1@0];
+              [y3$2*] (t1i1k2);
+              [y3$3*] (t1i1k3);
+              [y3$4*] (t1i1k4);
+
+              [y7$1@0];
+              [y7$2*] (t2i1k2);
+              [y7$3*] (t2i1k3);
+              [y7$4*] (t2i1k4);
+
+              [y11$1@0];
+              [y11$2*] (t3i1k2);
+              [y11$3*] (t3i1k3);
+              [y11$4*] (t3i1k4);
+
+
+
+              [y4$1@0];
+              [y4$2*] (t1i1k2);
+              [y4$3*] (t1i1k3);
+              [y4$4*] (t1i1k4);
+
+              [y8$1@0];
+              [y8$2*] (t2i1k2);
+              [y8$3*] (t2i1k3);
+              [y8$4*] (t2i1k4);
+
+              [y12$1@0];
+              [y12$2*] (t3i1k2);
+              [y12$3*] (t3i1k3);
+              [y12$4*] (t3i1k4);
+
+
+
+OUTPUT:     TECH1; 
+            RESIDUAL;
+            STANDARDIZED;
+
+PLOT: TYPE = PLOT3;
+
+!SAVEDATA: ESTIMATES ARE 
+!\\gauss\profile$\LS-Hiwizimmer\si54rok\Documents\Mplus\PIEG Paper\m3_estimates.dat;
+
+! SAVE: FILE IS personest.dat;
+!       SAVE = FSCORES;
+            
+
+
+
+
+
